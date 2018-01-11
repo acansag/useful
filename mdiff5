@@ -1,0 +1,10 @@
+#!/bin/bash
+# Automated md5 checker
+# Author: acansag
+
+if [ "$1" == "-h" ] || [ $# -lt 2 ] ; then
+  echo "Usage: `basename $0` [path/to/file] [md5sum-to-compare]"
+  exit 0
+fi
+
+diff <(md5 $1 | cut -d = -f2 | cut -d ' ' -f2) <(echo $2)
